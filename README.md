@@ -16,7 +16,7 @@ Due of nature of testcases (login -> create project -> create entity -> test ent
 
 1. Setup test machine with Python 3, Jenkins and web browsers installed.
 
-1. Install Jenkins [Robot Framework plugin](https://plugins.jenkins.io/robot/) for displaying test results.
+1. Install Jenkins [Robot Framework plugin](https://plugins.jenkins.io/robot/) for publishing test results.
 
 2. Create new Jenkins job with this repo and following shell build:
 
