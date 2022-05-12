@@ -4,24 +4,27 @@ This is a Selenium/Robot Framework project automating few functionalities in jun
 
 ## Description
 
-Simple `Robot` test framework was created. Browser was controlled via `Python Selenium` interface with help of `robotframework-seleniumlibrary`. This library installs all necessary dependencies including `selenium` and `webdriver-manager` modules.
+`Robot` test framework was created with couple of other libraries. `robotframework-seleniumlibrary` was used to control browser via `Python Selenium` interface.
 
 Testcase business logic was defined in `tests/testSuite.robot` file. I tried to make the business logic simple enough to keep testcases short and readable. Test data are stored in `test/testdata.py`.  
 
-Page object files were created inside `resources/pages` folder that handle element recognition, page interactions and other operations specific to each webpage. `robotframework-pageobjectlibrary` was used for this purpose, even though I made slight changes so I decided to include the library inside `resources/PageObjectLibrary` for now. Test steps were implemented inside page object classes.  
+Page object files were created inside `resources/pages` folder that handle element recognition, page interactions and other operations specific to each webpage. `robotframework-pageobjectlibrary` was used for this purpose, even though I made slight changes so I decided to include the library inside `resources/PageObjectLibrary` (for now). Test steps were implemented inside page object classes.  
 
 Due of nature of testcases (login -> create project -> create entity -> test entity functions), `robotframework-dependencylibrary` was used to set dependencies between them.  
 
 ## Installation
 
-1. Install [Robot Framework plugin](https://plugins.jenkins.io/robot/) to Jenkins.
+1. Setup test machine with Python 3, Jenkins and web browsers installed.
 
-2. Create new Jenkins job that pulls this repo and executes this shell script:
+1. Install Jenkins [Robot Framework plugin](https://plugins.jenkins.io/robot/) for displaying test results.
+
+2. Create new Jenkins job with this repo and following shell build:
 
 ```
-pip install robotframework robotframework-seleniumlibrary robotframework-dependencylibrary
+python -m venv env
+source ./env/bin/activate
+pip install -r requirements.txt
 robot -d ./results --pythonpath ./resources --pythonpath ./resources/pages tests/testSuite.robot
-exit 0
 ```
 
 ## What would I improve when developing the project further
@@ -33,3 +36,5 @@ exit 0
 3. I can imagine that most functionalities reside on `ProjectDetailPage` page. For that reason, it would make sense to split this class into more subclasses (e.g. `Design`, `Issue`, `Test Case`).
 
 4. I can also imagine some more sophisticated mapping of URLs in page objects (`PageObject.PAGE_URL`) so that relative URLs and regex patterns can be used.
+
+5. It is better to keep external libraries separately outside the project.
